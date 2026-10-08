@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { useSession, signOut } from 'next-auth/react'
-import WebcamLogo from './WebcamLogo'
 
 export default function Navbar(){
   const { data: session } = useSession()
@@ -9,7 +8,7 @@ export default function Navbar(){
   return (
     <header className="nav">
       <div className="nav-inner container">
-        <Link href="/" className="nav-brand"><WebcamLogo /></Link>
+        <Link href="/" className="nav-brand"><span className="brand-mark">BurnProjects</span></Link>
         <nav className="nav-links">
           <Link href="/market">Market</Link>
           {session ? <Link href="/agent/tools">Agent Tools</Link> : null}

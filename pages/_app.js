@@ -1,8 +1,6 @@
 import '../styles/globals.css'
 import { SessionProvider, useSession } from 'next-auth/react'
 import { useEffect } from 'react'
-import { WebcamProvider } from '../components/WebcamContext'
-import WebcamRequiredGate from '../components/WebcamRequiredGate'
 
 function SessionTracker(){
   const { data: session, status } = useSession()
@@ -77,13 +75,9 @@ function BackgroundPointerTracker(){
 export default function App({ Component, pageProps: { session, ...pageProps } }) {
   return (
     <SessionProvider session={session}>
-      <WebcamProvider>
-        <BackgroundPointerTracker />
-        <SessionTracker />
-        <WebcamRequiredGate>
-          <Component {...pageProps} />
-        </WebcamRequiredGate>
-      </WebcamProvider>
+      <BackgroundPointerTracker />
+      <SessionTracker />
+      <Component {...pageProps} />
     </SessionProvider>
   )
 }
